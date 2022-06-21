@@ -3,30 +3,33 @@ import 'package:vehicle_list_app/src/model/vehicle_details.dart';
 import 'package:vehicle_list_app/src/screens/first_screen.dart';
 
 class SecondScreen extends StatefulWidget {
-   SecondScreen({Key? key, required this.vehicleDetails}) : super(key: key);
+  SecondScreen({Key? key, required this.vehicleDetails}) : super(key: key);
+
   List<VehicleDetails> vehicleDetails;
+
   @override
   State<SecondScreen> createState() => _SecondScreenState();
 }
 
 class _SecondScreenState extends State<SecondScreen> {
 
-  var _vechileDetails = VehicleDetails();
+  final _vehicleDetails = VehicleDetails();
+
   List<String> vehicleBrands = [
-    'Maruti Suzuki India Ltd',
-    'Hyundai Motor India Limited',
-    'Mahindra & Mahindra Ltd',
-    'Tata Motors Ltd',
-    'Honda Cars India Ltd',
-    'Toyota Kirloskar Motor Private Limited',
-    'Ford India',
-    'Renault India',
-    'Nissan India',
-    'Volkswagen India',
-    'India Yamaha Motor Pvt Ltd',
-    'Royal Enfield (Unit of Eicher Ltd)',
+    'Maruti Suzuki',
+    'Hyundai',
+    'Mahindra & Mahindra',
+    'Tata',
+    'Honda',
+    'Toyota Kirloskarr',
+    'Ford',
+    'Renault',
+    'Nissan',
+    'Volkswagen',
+    'Yamaha',
+    'Royal Enfield',
   ];
-  String selectedBrand = 'Maruti Suzuki India Ltd';
+  String selectedBrand = 'Maruti Suzuki';
 
   List<String> vehicleType = [
     'Bike',
@@ -64,7 +67,7 @@ class _SecondScreenState extends State<SecondScreen> {
                 children: [
                   TextFormField(
                     onSaved: (val) {
-                      _vechileDetails.vehicleNumber = val;
+                      _vehicleDetails.vehicleNumber = val;
                     },
                     validator: (val) {
                       if (val!.isEmpty) {
@@ -87,7 +90,7 @@ class _SecondScreenState extends State<SecondScreen> {
                   ),
                   DropdownButtonFormField<String>(
                     onSaved: (val) {
-                      _vechileDetails.vehicleBrand = val;
+                      _vehicleDetails.vehicleBrand = val;
                     },
                     decoration: InputDecoration(
                       label: const Text("Vehicle Brand"),
@@ -113,7 +116,7 @@ class _SecondScreenState extends State<SecondScreen> {
                   ),
                   DropdownButtonFormField<String>(
                     onSaved: (val) {
-                      _vechileDetails.vehicleType = val;
+                      _vehicleDetails.vehicleType = val;
                     },
                     decoration: InputDecoration(
                       label: const Text("Vehicle Type"),
@@ -139,7 +142,7 @@ class _SecondScreenState extends State<SecondScreen> {
                   ),
                   DropdownButtonFormField<String>(
                     onSaved: (val) {
-                      _vechileDetails.fuelType = val;
+                      _vehicleDetails.fuelType = val;
                     },
                     decoration: InputDecoration(
                       label: const Text("Fuel Type"),
@@ -175,7 +178,7 @@ class _SecondScreenState extends State<SecondScreen> {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
 
-                          widget.vehicleDetails.add(_vechileDetails);
+                          widget.vehicleDetails.add(_vehicleDetails);
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
@@ -184,10 +187,6 @@ class _SecondScreenState extends State<SecondScreen> {
                               ),
                             ),
                           );
-                          print(vehicleNoController.text);
-                          print(selectedBrand);
-                          print(selectedVehicleType);
-                          print(selectedFuelType);
                         }
                       },
                       child: const Text(

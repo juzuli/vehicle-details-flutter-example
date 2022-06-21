@@ -6,14 +6,13 @@ import 'package:vehicle_list_app/src/screens/tabs/second_tab.dart';
 
 class FirstScreen extends StatefulWidget {
   final List<VehicleDetails>? vehicleDetails;
-  const FirstScreen({Key? key,this.vehicleDetails}) : super(key: key);
+  const FirstScreen({Key? key, this.vehicleDetails}) : super(key: key);
 
   @override
   State<FirstScreen> createState() => _FirstScreenState();
 }
 
 class _FirstScreenState extends State<FirstScreen> {
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -46,7 +45,9 @@ class _FirstScreenState extends State<FirstScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (builder) =>   SecondScreen(vehicleDetails: widget.vehicleDetails ?? [],),
+                builder: (builder) => SecondScreen(
+                  vehicleDetails: widget.vehicleDetails ?? [],
+                ),
               ),
             );
           },

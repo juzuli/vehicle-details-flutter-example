@@ -27,9 +27,11 @@ class _FirstTabState extends State<FirstTab> {
               vehicleBrand: _vehicleDetails[index].vehicleBrand ?? "",
               vehicleType: _vehicleDetails[index].vehicleType ?? "",
               fuelType: _vehicleDetails[index].fuelType ?? "",
-              onPressed: (){
+              onPressed: () {
                 setState(() {
-                  widget.vehicleDetails!.removeAt(index);
+                  int idx =
+                      widget.vehicleDetails!.indexOf(_vehicleDetails[index]);
+                  widget.vehicleDetails!.removeAt(idx);
                 });
               },
             );
