@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vehicle_list_app/src/custom_ui/detail_card.dart';
 import 'package:vehicle_list_app/src/model/vehicle_details.dart';
 
 class FirstTab extends StatefulWidget {
@@ -17,84 +18,24 @@ class _FirstTabState extends State<FirstTab> {
       List _vehicleDetails = widget.vehicleDetails!
           .where((e) => e.vehicleType!.contains("Bike"))
           .toList();
-      if(_vehicleDetails.isNotEmpty){
+      if (_vehicleDetails.isNotEmpty) {
         return ListView.builder(
           itemCount: _vehicleDetails.length,
           itemBuilder: (BuildContext context, int index) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 10, left: 24,right:24),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                elevation: 5,
-                child: Container(
-                  margin:
-                  const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
-                  child: Column(
-                    // spacing: 10,
-                    // direction: Axis.vertical,
-                    children: [
-                      Row(
-                        children: [
-                          const Text("Vehicle Number"),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          const Text(":"),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(_vehicleDetails[index].vehicleNumber ?? ""),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          const Text("Vehicle Brand"),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          const Text(":"),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(_vehicleDetails[index].vehicleBrand ?? ""),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          const Text("Vehicle Type"),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          const Text(":"),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(_vehicleDetails[index].vehicleType ?? ""),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          const Text("Fuel Type"),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          const Text(":"),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(_vehicleDetails[index].fuelType ?? ""),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+            return DetailCard(
+              vehicleNumber: _vehicleDetails[index].vehicleNumber ?? "",
+              vehicleBrand: _vehicleDetails[index].vehicleBrand ?? "",
+              vehicleType: _vehicleDetails[index].vehicleType ?? "",
+              fuelType: _vehicleDetails[index].fuelType ?? "",
+              onPressed: (){
+                setState(() {
+                  widget.vehicleDetails!.removeAt(index);
+                });
+              },
             );
           },
         );
-      }else{
+      } else {
         return const Center(
           child: Text("No bikes added !"),
         );
