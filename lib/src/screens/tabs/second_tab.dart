@@ -15,8 +15,10 @@ class _SecondTabState extends State<SecondTab> {
   @override
   Widget build(BuildContext context) {
     if (widget.vehicleDetails != null) {
-      List _vehicleDetails = widget.vehicleDetails!.where((e) => e.vehicleType!.contains("Car")).toList();
-      if(_vehicleDetails.isNotEmpty){
+      List _vehicleDetails = widget.vehicleDetails!
+          .where((e) => e.vehicleType!.contains("Car"))
+          .toList();
+      if (_vehicleDetails.isNotEmpty) {
         return ListView.builder(
           itemCount: _vehicleDetails.length,
           itemBuilder: (BuildContext context, int index) {
@@ -25,11 +27,17 @@ class _SecondTabState extends State<SecondTab> {
               vehicleBrand: _vehicleDetails[index].vehicleBrand ?? "",
               vehicleType: _vehicleDetails[index].vehicleType ?? "",
               fuelType: _vehicleDetails[index].fuelType ?? "",
+              onPressed: () {
+                setState(() {
+                  int idx =
+                      widget.vehicleDetails!.indexOf(_vehicleDetails[index]);
+                  widget.vehicleDetails!.removeAt(idx);
+                });
+              },
             );
           },
         );
-      }
-      else{
+      } else {
         return const Center(
           child: Text("No cars added !"),
         );

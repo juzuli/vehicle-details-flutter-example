@@ -31,7 +31,7 @@ class DetailCard extends StatelessWidget {
               right: 5,
               top: 5,
               child: IconButton(
-                onPressed: onPressed??(){},
+                onPressed: onPressed ?? () {},
                 icon: const Icon(Icons.delete_outline),
               ),
             ),
